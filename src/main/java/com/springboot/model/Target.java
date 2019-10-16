@@ -1,12 +1,16 @@
 package com.springboot.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -49,6 +53,12 @@ public class Target {
 	
 	@Column(name = "deleted", length = 20)
 	private int deleted;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "targets")
+    private Set<User> users = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "targets")
+    private Set<Hashtag> hashtags = new HashSet<>();
 	
 	public Target() {
 		
@@ -116,6 +126,22 @@ public class Target {
 
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
+	}
+
+	public Set<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<User> users) {
+		this.users = users;
+	}
+
+	public Set<Hashtag> getHashtags() {
+		return hashtags;
+	}
+
+	public void setHashtags(Set<Hashtag> hashtags) {
+		this.hashtags = hashtags;
 	}
 	
 	

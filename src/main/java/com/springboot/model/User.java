@@ -13,6 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OrderColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -70,6 +71,18 @@ public class User {
 	@Column(name = "about")
 	private String about;
 	
+	@Column(name = "enable")
+	private int enable;
+	
+	@Column(name = "reason")
+	private int reason;
+	
+	@Column(name = "bannedTime")
+	private int bannedTime;
+	
+	@Column(name = "status")
+	private int status;
+	
 	@Column(name = "createdTime")
 	@Temporal(TemporalType.TIMESTAMP)
 	@DateTimeFormat(pattern="yyyy/MM/dd HH:mm:ss")
@@ -77,6 +90,12 @@ public class User {
 	
 	@Column(name = "deleted")
 	private int deleted;
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "role_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnore
+	private Role role;
 	
 	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "level_id", nullable = false)
@@ -90,6 +109,24 @@ public class User {
 	inverseJoinColumns = { @JoinColumn(name="target_id") } )
 	@OrderColumn(name="display_order")
 	private Set<Target> targets;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<UserChatroom> userchatroom;
+	
+	@OneToMany(mappedBy = "user")
+	private Set<UserHint> userhint;
+	
+	@OneToMany(mappedBy = "userfollowing")
+	private Set<UserFollow> userfollowing;
+	
+	@OneToMany(mappedBy = "userfollowed")
+	private Set<UserFollow> userfollowed;
+	
+	@OneToMany(mappedBy = "userblocking")
+	private Set<UserBlock> userblocking;
+	
+	@OneToMany(mappedBy = "userblocked")
+	private Set<UserBlock> userblocked;
 	
 	public User() {
 			
@@ -215,6 +252,22 @@ public class User {
 	public int getDeleted() {
 		return deleted;
 	}
+	
+	public int getEnable() {
+		return enable;
+	}
+
+	public void setEnable(int enable) {
+		this.enable = enable;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
 
 	public void setDeleted(int deleted) {
 		this.deleted = deleted;
@@ -234,6 +287,78 @@ public class User {
 
 	public void setTargets(Set<Target> targets) {
 		this.targets = targets;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
+	}
+
+	public int getReason() {
+		return reason;
+	}
+
+	public void setReason(int reason) {
+		this.reason = reason;
+	}
+
+	public int getBannedTime() {
+		return bannedTime;
+	}
+
+	public void setBannedTime(int bannedTime) {
+		this.bannedTime = bannedTime;
+	}
+
+	public Set<UserChatroom> getUserchatroom() {
+		return userchatroom;
+	}
+
+	public void setUserchatroom(Set<UserChatroom> userchatroom) {
+		this.userchatroom = userchatroom;
+	}
+
+	public Set<UserHint> getUserhint() {
+		return userhint;
+	}
+
+	public void setUserhint(Set<UserHint> userhint) {
+		this.userhint = userhint;
+	}
+
+	public Set<UserFollow> getUserfollowing() {
+		return userfollowing;
+	}
+
+	public void setUserfollowing(Set<UserFollow> userfollowing) {
+		this.userfollowing = userfollowing;
+	}
+
+	public Set<UserFollow> getUserfollowed() {
+		return userfollowed;
+	}
+
+	public void setUserfollowed(Set<UserFollow> userfollowed) {
+		this.userfollowed = userfollowed;
+	}
+
+	public Set<UserBlock> getUserblocking() {
+		return userblocking;
+	}
+
+	public void setUserblocking(Set<UserBlock> userblocking) {
+		this.userblocking = userblocking;
+	}
+
+	public Set<UserBlock> getUserblocked() {
+		return userblocked;
+	}
+
+	public void setUserblocked(Set<UserBlock> userblocked) {
+		this.userblocked = userblocked;
 	}
 
 	

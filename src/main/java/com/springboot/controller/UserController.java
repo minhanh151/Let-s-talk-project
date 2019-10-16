@@ -35,7 +35,7 @@ public class UserController {
         for (Object principal: allPrincipals) {
             if (principal instanceof User) {
                 usersNamesList.add(((User) principal));
-                System.out.println(((User) principal).getUsername());
+                System.out.println(((User) principal).getEmail());
             }
         }
         
