@@ -1,0 +1,89 @@
+<head th:fragment="header">
+
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Let's talk</title>
+	
+	<!-- Web Application Manifest -->
+	<link rel="manifest" href="manifest.json">
+	
+	<!-- Add to homescreen for Chrome on Android 
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="application-name" content="Let's talk">
+	<meta name="theme-color" content="#303F9F"> -->
+	
+	<!-- Add to homescreen for Safari on iOS 
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="apple-mobile-web-app-title" content="Let's talk">
+	<meta name="apple-mobile-web-app-status-bar-style" content="#303F9F"> -->
+	
+	<!-- Tile icon for Win8
+	<meta name="msapplication-TileColor" content="#3372DF">
+	<meta name="msapplication-navbutton-color" content="#303F9F">  -->
+	
+	<!-- Material Design Lite 
+	<link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.orange-indigo.min.css">  
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">-->
+	
+	<!-- Font -->
+	<link href='https://fonts.googleapis.com/css?family=Aclonica' rel='stylesheet'>
+	
+    
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Custome style <link href="/css/main.css" rel="stylesheet"> -->
+    
+    <link href="/css/style.css" rel="stylesheet">
+    <link href="/css/jquery.tagit.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.0.1/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jquery-ui.min.js"></script>
+	<script src="/js/tag-it.min.js"></script>
+	<!-- The core Firebase JS SDK is always required and must be listed first -->
+	<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase-auth.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase-database.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase-storage.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.5.1/firebase-messaging.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.1.0/firebase-analytics.js"></script>
+	
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+		  apiKey: "AIzaSyABK2Bsnxq8pGllnfcaxpHZPgNn2kG1LUk",
+		  authDomain: "lets-talk-project.firebaseapp.com",
+		  databaseURL: "https://lets-talk-project.firebaseio.com",
+		  projectId: "lets-talk-project",
+		  storageBucket: "",
+		  messagingSenderId: "70698355173",
+		  appId: "1:70698355173:web:3ad2995f2038ea994c870c",
+		  measurementId: "G-323Q9LN8HN"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		firebase.analytics();
+		
+		//Notification
+		var el = document.querySelector('.notification');
+		var buttonNotify = document.getElementById('buttonNotify');
+		if(buttonNotify){
+			buttonNotify.addEventListener('click', function(){
+			    var count = Number(el.getAttribute('data-count')) || 0;
+			    el.setAttribute('data-count', count + 1);
+			    el.classList.remove('notify');
+			    el.offsetWidth = el.offsetWidth;
+			    el.classList.add('notify');
+			    if(count === 0){
+			        el.classList.add('show-count');
+			    }
+			}, false);
+		}
+	</script>
+	
+</head>

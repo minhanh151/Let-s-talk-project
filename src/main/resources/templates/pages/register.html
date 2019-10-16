@@ -1,0 +1,51 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="en" th:replace="fragments/header :: header"> </head>
+
+<body>
+	<div th:replace="fragments/navigation.html :: navigation"></div>
+	
+	<main>
+	  	<div class="container register-form">
+	 	
+			<!-- Default form subscription -->
+			<form method="POST" class="text-center border border-light p-5 login-form" >
+			
+			    <p class="h4 mb-4">Register</p>
+			
+			    <p>Join our mailing list. We write rarely, but only the best content.</p>
+			
+			    <p>
+			        <a href="" target="_blank">See the last newsletter</a>
+			    </p>
+			
+			    <!-- Name -->
+			    <input type="text" placeholder="Email" class="form-control mb-4"/>
+			
+			    <!-- Email -->
+			    <input type="password" placeholder="Password" class="form-control mb-4"/>
+			    
+			    <input type="password" name="repeatpassword" placeholder="Repeat password" class="form-control mb-4" />
+			
+			    <!-- Sign in button -->
+			    <button class="btn btn-info btn-block" type="submit">Sign up</button>
+			
+			
+			</form>
+			<!-- Default form subscription -->
+		 </div>
+	  
+	</main>
+	
+	<div th:replace="fragments/footer.html :: footer"></div>
+	
+	<script src="/js/main.js"></script>
+	<script>
+		$( document ).ready(function() {
+			initFirebaseAuth();
+	    });
+	</script>
+
+</body>
+</html>
